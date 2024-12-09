@@ -133,7 +133,7 @@ else{
                 {
                     echo "Failed to connect:" . mysqli_connect_errno();
                 }
-                $result = mysqli_query($con,'SELECT DISTINCT(`Training Program Name`),`Training Cost`,`Training Duration(Days)`,`Trainer` FROM `training_and_development_data` GROUP BY `Training Program Name`;');
+                $result = mysqli_query($con,'SELECT DISTINCT(`Training Program Name`),`Training Cost`,`Training Duration(Days)`,`Trainer`,`Location` FROM `training_and_development_data` GROUP BY `Training Program Name`;');
                 //$result = mysqli_query($con,"SELECT * FROM training_and_development_data");
                 
                 echo "<h3>List of trainings</h3>";
@@ -141,6 +141,7 @@ else{
                         <thead>
                                     <tr>
                                         <th>Training Program Name</th>
+                                        <th>Location</th>
                                         <th>Trainer</th>
                                         <th>Training Duration (Days)</th>
                                         <th>Training Cost</th>
@@ -149,11 +150,13 @@ else{
                         ";
                     while ($row = $result->fetch_assoc()) {
                         $field3name = $row["Training Program Name"];
+                        $field6name = $row["Location"];
                         $field7name = $row["Trainer"]; 
                         $field8name = $row["Training Duration(Days)"];
                         $field9name = $row["Training Cost"];        
                         echo ' <tr>
                                 <td>'.$field3name.'</td> 
+                                <td>'.$field6name.'</td> 
                                 <td>'.$field7name.'</td> 
                                 <td>'.$field8name.'</td> 
                                 <td>'.$field9name.'</td>

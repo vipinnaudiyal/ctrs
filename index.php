@@ -31,7 +31,7 @@ else{
                     </a> 
                     <br>
                     <br>
-                    <a>
+                    <a href = "trainingrecommender.php">
                     <input type = "Submit" name = "employee_recommender"  class = "navigationButton" value = "Employee Recommender" style = "width:150px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 9px;">
                     </a> 
                 </div> 
