@@ -11,7 +11,7 @@ else{
 <!DOCTYPE html>
    <head>
     <title>IIT</title>
-    <a href="index.php"><input type = "submit" name = "back" value = "back"></a><br>
+    <a href="index.php"><input type = "submit" name = "back" value = "back" style = " border-radius: 14px;border-width: thin;"></a>
     <style>
         table {
             width: 100%;
@@ -25,39 +25,30 @@ else{
         th {
             background-color: #f2f2f2;
         }
+        .navigationButton{
+            width:170px;
+            position: relative;
+            top: 0px;
+            right: 0px;
+            background-color: whitesmoke;
+            border-radius: 30px;
+            height: 40px;}
     </style>
     </head>
     <body>
         <div class = "wrapper">
             <div class = "login_box">
                 <div class = 'login_header'>
-                    <h3>IIT JODHPUR, Training Programs</h>
+                    <h3 style = "text-align: center;">IIT JODHPUR, Training Programs</h>
                     
                 </div>
                 <div id = "first">
                     <!--Creating login form--> 
 
                     <form method = "POST">
-                        <input type ="text" name = "fname" placeholder = "First Name" value = "">
-                        <input type ="text" name = "lname" placeholder = "Last Name" value = "">
-                        <input type ="text" name = "address" placeholder = "Address" value = "">
-                        <input type ="text" name = "contact" placeholder = "Contact" value = "">
-                        <input type ="text" name = "city" placeholder = "City" value = "">
-                        <input type ="text" name = "hobby" placeholder = "Hobbies" value = "">
-                        <div style = "width:100%">
-                        <br>
-                        
-                        <input type = "submit" name = "button" value = "Insert Data">
-                        <br>
-                        <br>
-                        <br>
-                        <input type = "submit" name = "training_list" value = "Training Programs">
-                        <br>
-                        <hr>
-                        <input type = "submit" name = "show_all_training_data" value = "Show Training Records">
-                        <br>
-                        <br>
-                        <input type = "submit" name = "clean" value = "Clear Screen">
+                        <br><br>
+                        <input type = "submit" name = "training_list" value = "Training Programs" class = "navigationButton">
+                        <input type = "submit" name = "show_all_training_data" value = "Show Training Records" class = "navigationButton">
                         <br>
                         </div>
                         <br> 

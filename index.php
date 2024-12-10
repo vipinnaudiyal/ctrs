@@ -22,17 +22,17 @@ else{
                 <div>
                     <h4 style = "font-family: Arial, sans-serif;">Navigations >></h4>
                     <a href="trainingprograms.php">
-                    <input type = "Submit" name = "training_programs"  class = "navigationButton" value = "Training Programs" style = "width:150px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 9px;">
+                    <input type = "Submit" name = "training_programs"  class = "navigationButton" value = "Training Section" style = "width:170px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 30px;height: 40px;">
                     </a>
                     <br>
                     <br>
                     <a href="employeedetails.php">
-                    <input type = "Submit" name = "employee_details"  class = "navigationButton" value = "Employee Details" style = "width:150px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 9px;">
+                    <input type = "Submit" name = "employee_details"  class = "navigationButton" value = "Employee Section" style = "width:170px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 30px;height: 40px;">
                     </a> 
                     <br>
                     <br>
                     <a href = "trainingrecommender.php">
-                    <input type = "Submit" name = "employee_recommender"  class = "navigationButton" value = "Employee Recommender" style = "width:150px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 9px;">
+                    <input type = "Submit" name = "employee_recommender"  class = "navigationButton" value = "Recommendations" style = "width:170px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 30px;height: 40px;">
                     </a> 
                 </div> 
             </div>
