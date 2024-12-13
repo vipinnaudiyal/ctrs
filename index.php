@@ -40,17 +40,17 @@ else{
                 </div>
                 <div>
                     <h4 style = "font-family: Arial, sans-serif;">Navigations >></h4>
-                    <a href="trainingprograms.php">
+                    <a href="trainingprogramsrds.php">
                     <input type = "Submit" name = "training_programs"  class = "navigationButton" value = "Training Section" style = "width:170px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 30px;height: 40px;">
                     </a>
                     <br>
                     <br>
-                    <a href="employeedetails.php">
+                    <a href="employeedetailsrds.php">
                     <input type = "Submit" name = "employee_details"  class = "navigationButton" value = "Employee Section" style = "width:170px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 30px;height: 40px;">
                     </a> 
                     <br>
                     <br>
-                    <a href = "trainingrecommender.php">
+                    <a href = "trainingrecommenderrds.php">
                     <input type = "Submit" name = "employee_recommender"  class = "navigationButton" value = "Recommendations" style = "width:170px;position: relative;top: 0px;right: 0px;background-color: whitesmoke;border-radius: 30px;height: 40px;">
                     </a> 
                 </div> 
