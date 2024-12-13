@@ -1,4 +1,23 @@
 <?php
+
+//-----------
+
+$host="iitjdb.c34ko6kys3lo.us-east-1.rds.amazonaws.com";
+$port=3306;
+$socket="";
+$user="admin";
+$password="Admin123";
+$dbname="mydb";
+
+$con = new mysqli($host, $user, $password, $dbname, $port,$socket)
+	or die ('Could not connect to the database server' . mysqli_connect_error());
+
+//$con->close();
+
+//===========
+
+/*
+
 $con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
 if(mysqli_connect_errno())
 {
@@ -6,7 +25,7 @@ if(mysqli_connect_errno())
 }
 else{
     //echo "Connected";
-}
+}*/
 ?>
 <!DOCTYPE html>
    <head>

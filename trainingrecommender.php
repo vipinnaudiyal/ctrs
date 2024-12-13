@@ -54,7 +54,7 @@ $conn->close();
 <body>
 <br>
 <form action="" method="POST">
-    <label for="dropdown">Select Employee</label><br><br>
+    <label for="dropdown"><strong>Select Employee</strong></label>
     <select id="dropdown" name="name_selecter">
         <?php echo $options; ?>
     </select>
@@ -68,12 +68,18 @@ if(array_key_exists('recommend', $_POST)) {
     $emp_name = $_POST['name_selecter'];
     retrive_details_of_selected_employee($emp_name);
     echo '<hr>';
+
     recommend_Training($emp_name); 
+    echo '</div>';
     echo '<hr>';
+
     recommend_Training_division($emp_name);
+    echo '</div>';
     echo '<hr>';
+
     recommend_Training_ratings($emp_name);
     echo '<hr>';
+
     recommend_Training_performers($emp_name);
     echo '<hr>';
     recommend_Training_similarity($emp_name);
@@ -87,7 +93,7 @@ function retrive_details_of_selected_employee($emp_name) {
         echo "Failed to connect:" . mysqli_connect_errno();
     }
     $result = mysqli_query($con,"SELECT * FROM employee_data WHERE EmpID = '$emp_name'");
-            echo "<h3>Employee records</h3>";
+            echo "<h3>Selected Employee records</h3>";
             echo "<table> 
                     <thead>
                                 <tr>
@@ -162,7 +168,7 @@ function recommend_Training($emp_name) {
 
     if ($result->num_rows > 0){
         while ($row = $result->fetch_assoc()) {
-            echo "<h3>Location Based training recommendations</h3>";
+            echo "<h3>RECOMMENDATION 1 : Location Based training recommendations</h3>";
             echo "<table> 
                     <thead>
                         <tr>
@@ -190,7 +196,7 @@ function recommend_Training($emp_name) {
                 echo '</table>';
             }
 else{
-    echo '<br><h4>No training is available for this employee based upon the location</h4><br>';
+    echo '<br><h4 style="color:red">RECOMMENDATION 1 : No training is available for this employee based upon the location</h4><br>';
 }
 }
 
@@ -218,7 +224,7 @@ function recommend_Training_division($emp_name) {
     ");
 
     if ($result->num_rows > 0){
-        echo "<h3>Division Based training recommendations</h3>";
+        echo "<h3>RECOMMENDATION 2 : Division Based training recommendations</h3>";
         echo "<table> 
                 <thead>
                     <tr>
@@ -246,7 +252,7 @@ function recommend_Training_division($emp_name) {
                 echo '</table>';
             }
 else{
-    echo '<br><h4>No training is available for this employee based upon the division</h4><br>';
+    echo '<br><h4 style="color:red">RECOMMENDATION 2 : No training is available for this employee based upon the division</h4><br>';
 }
 }
 
@@ -271,7 +277,7 @@ function recommend_Training_ratings($emp_name) {
     ");
 
     if ($result->num_rows > 0){
-        echo "<h3>Ratings Based training recommendations</h3>";
+        echo "<h3>RECOMMENDATION 3 : Ratings Based training recommendations</h3>";
         echo "<table> 
                 <thead>
                     <tr>
@@ -299,7 +305,7 @@ function recommend_Training_ratings($emp_name) {
                 echo '</table>';
             }
 else{
-    echo '<br><h4>No training is available for this employee based upon the Ratings</h4><br>';
+    echo '<br><h4 style="color:red">RECOMMENDATION 3 : No training is available for this employee based upon the Ratings</h4><br>';
     echo 'Eligibility for this training:<br>
             1. Ratings < 3<br>
             2. Full-Time employee';
@@ -328,7 +334,7 @@ function recommend_Training_performers($emp_name) {
     ");
 
     if ($result->num_rows > 0){
-        echo "<h3>Ratings Based training recommendations</h3>";
+        echo "<h3>RECOMMENDATION 4 : Ratings Based training recommendations</h3>";
         echo "<table> 
                 <thead>
                     <tr>
@@ -356,7 +362,7 @@ function recommend_Training_performers($emp_name) {
                 echo '</table>';
             }
 else{
-    echo '<br><h4>No training is available for this employee based upon the Performance</h4><br>';
+    echo '<br><h4 style="color:red">RECOMMENDATION 4 : No training is available for this employee based upon the Performance</h4><br>';
     echo 'Eligibility for this training:<br>
             1. Ratings > 4<br>
             2. Full-Time employee<br>
@@ -391,7 +397,7 @@ function recommend_Training_similarity($emp_name) {
     ");
 
     if ($result->num_rows > 0){
-        echo "<h3>Ratings Based training recommendations</h3>";
+        echo "<h3>RECOMMENDATION 5 : Ratings Based training recommendations</h3>";
         echo "<table> 
                     <thead>
                                 <tr>
@@ -478,7 +484,7 @@ $result = mysqli_query($con,"
 
             }}
 else{
-    echo '<br><h4>No employee matches the selected employee</h4><br>';
+    echo '<br><h4 style="color:red">RECOMMENDATION 5 : No employee matches the selected employee</h4><br>';
     echo 'Matching Criteria:<br>
             1. Same Performance <br>
             2. Same Ratings<br>

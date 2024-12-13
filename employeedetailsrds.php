@@ -128,58 +128,65 @@ else{
 
 
         function employeeDetails() { 
-            $con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
-            
-            if(mysqli_connect_errno())
-            {
-                echo "Failed to connect:" . mysqli_connect_errno();
-            }
-            $result = mysqli_query($con,"SELECT * FROM employee_data ORDER BY EmpID DESC");
-            echo "<h3>Employee records</h3>";
-            echo "<table> 
-                    <thead>
-                                <tr>
-                                    <th>EmpID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Title</th>
-                                    <th>DOB</th>
-                                    <th>Manager</th>
-                                    <th>Division</th>
-                                    <th>Gender</th>
-                                    <th>Marital Status</th>
-                                    <th>Performance Score</th>
-                                    <th>Tratings</th>
-                                </tr>
-                            </thead>
-                    ";
-                while ($row = $result->fetch_assoc()) {
-                    $field1name = $row["EmpID"];
-                    $field2name = $row["FirstName"];
-                    $field3name = $row["LastName"];
-                    $field4name = $row["Title"];
-                    $field5name = $row["DOB"];
-                    $field6name = $row["Supervisor"];
-                    $field7name = $row["Division"]; 
-                    $field8name = $row["GenderCode"];
-                    $field9name = $row["MaritalDesc"];    
-                    $field10name = $row["Performance Score"];
-                    $field11name = $row["Current Employee Rating"];       
-                    echo ' <tr>
-                            <td>'.$field1name.'</td>
-                            <td>'.$field2name.'</td> 
-                            <td>'.$field3name.'</td> 
-                            <td>'.$field4name.'</td>
-                            <td>'.$field5name.'</td> 
-                            <td>'.$field6name.'</td> 
-                            <td>'.$field7name.'</td> 
-                            <td>'.$field8name.'</td> 
-                            <td>'.$field9name.'</td>
-                            <td>'.$field10name.'</td> 
-                            <td>'.$field11name.'</td>
-                            </tr>
-                        ';
-                } 
+
+            $host="iitjdb.c34ko6kys3lo.us-east-1.rds.amazonaws.com";
+$port=3306;
+$socket="";
+$user="admin";
+$password="Admin123";
+$dbname="mydb";
+
+$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+	or die ('Could not connect to the database server' . mysqli_connect_error());
+
+
+$query = "SELECT EmpID,FirstName,LastName,Title,DOB,Supervisor,Division,GenderCode,MaritalDesc,`Performance Score`,`Current Employee Rating` FROM mydb.employee_data ORDER BY EmpID DESC";
+
+//$query = "SELECT 1";
+$stmt = $con->prepare($query);
+if (!$stmt) {
+    die("Prepare failed: " . $con->error);
+} else {
+    $stmt->execute();
+    $stmt->bind_result($field1name, $field2name,$field3name,$field4name,$field5name,$field6name,$field7name,$field8name,$field9name,$field10name,$field11name);
+    echo "<h3>Employee records</h3>";
+    echo "<table> 
+            <thead>
+                        <tr>
+                            <th>EmpID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Title</th>
+                            <th>DOB</th>
+                            <th>Manager</th>
+                            <th>Division</th>
+                            <th>Gender</th>
+                            <th>Marital Status</th>
+                            <th>Performance Score</th>
+                            <th>Tratings</th>
+                        </tr>
+                    </thead>
+            ";
+    while ($stmt->fetch()) {
+        printf('<tr>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+            <td>%s</td>
+        </tr>',
+        $field1name, $field2name, $field3name, $field4name, $field5name, 
+        $field6name, $field7name, $field8name, $field9name, $field10name, 
+        $field11name);
+
+   }
+   }
                 echo '</table>';
             }
        
