@@ -1,4 +1,5 @@
 <?php
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -54,8 +55,8 @@ $conn->close();
 <body>
 <br>
 <form action="" method="POST">
-    <label for="dropdown"><strong>Select Employee</strong></label>
     <select id="dropdown" name="name_selecter">
+    <option value="value" selected>Select Employee</option>
         <?php echo $options; ?>
     </select>
     <input  style = "height: 35px;" type = "submit" name = "recommend" value = "Recommend Programs">
@@ -478,10 +479,6 @@ $result = mysqli_query($con,"
                 echo '</table>';
 
 //////////
-
-
-
-
             }}
 else{
     echo '<br><h4 style="color:red">RECOMMENDATION 5 : No employee matches the selected employee</h4><br>';

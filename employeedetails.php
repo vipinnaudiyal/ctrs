@@ -1,12 +1,12 @@
 <?php
-/*$con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
+$con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
 if(mysqli_connect_errno())
 {
     echo "Failed to connect:" . mysqli_connect_errno();
 }
 else{
     //echo "Connected to the DB";
-}*/
+}
 ?>
 <!DOCTYPE html>
    <head>
@@ -129,7 +129,7 @@ else{
 
         function employeeDetails() { 
             $con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
-            
+
             if(mysqli_connect_errno())
             {
                 echo "Failed to connect:" . mysqli_connect_errno();

@@ -1,12 +1,13 @@
 <?php
-/*$con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
+$con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
 if(mysqli_connect_errno())
 {
     echo "Failed to connect:" . mysqli_connect_errno();
 }
 else{
     //echo "Connected to the DB";
-}*/
+}
+
 ?>
 <!DOCTYPE html>
    <head>
@@ -83,7 +84,7 @@ else{
         //Definition of functions 
 
         function insertRecord() { 
-            
+              
             $fname = strip_tags($_POST['fname']);
             $lname = strip_tags($_POST['lname']);
             $gender = strip_tags($_POST['gender']);
@@ -94,6 +95,7 @@ else{
                 echo "All fields are required. Please fill out all the fields.";
                 exit;
             }
+            
             #Building value Randomly using DB
             $empID = mysqli_query($con,"SELECT max(EmpID) as newemp FROM employee_data")->fetch_assoc()["newemp"]+1;
             $startDate = mysqli_query($con,"SELECT StartDate FROM employee_data ORDER BY RAND()LIMIT 1")->fetch_assoc()["StartDate"];
@@ -116,42 +118,51 @@ else{
             $RaceDesc = mysqli_query($con,"SELECT RaceDesc FROM employee_data ORDER BY RAND()LIMIT 1")->fetch_assoc()["RaceDesc"];
             $PerformanceScore = mysqli_query($con,"SELECT `Performance Score` FROM employee_data ORDER BY RAND()LIMIT 1")->fetch_assoc()["Performance Score"];
             $CurrentEmployeeRating = mysqli_query($con,"SELECT `Current Employee Rating` FROM employee_data ORDER BY RAND()LIMIT 1")->fetch_assoc()["Current Employee Rating"];
-            
+           
 
-            $query = mysqli_query($con,"INSERT INTO employee_data VALUES('$empID','$fname','$lname',
+            $query = "INSERT INTO employee_data VALUES('$empID','$fname','$lname',
             '$startDate',NULL,'$Title','$Supervisor','$ADEmail','$BusinessUnit','$EmployeeStatus','$EmployeeType','$PayZone',
             '$EmployeeClassificationType','$TerminationType','$TerminationDescription','$DepartmentType','$Division','$DOB','$State',
             '$JobFunctionDescription','$gender','$LocationCode','$RaceDesc','$maritalstatus','$PerformanceScore','$CurrentEmployeeRating')
-            ");  
+            ";
+            /*
+            if ($stmt = $con->prepare($query)) {
+                $stmt->execute();
+                $stmt->bind_result($field1, $field2);
+                if (!$stmt) {
+                    die("Prepare failed: " . $con->error);
+                } else {
+                    echo "asdasd";
+                }
+                while ($stmt->fetch()) {
+                    printf("%s, %s\n", $field1, $field2);
+                }
+                $stmt->close();
+            }*/
             echo "Database updated successfully" ;  
             } 
 
 
-        function employeeDetails() { 
+function employeeDetails() { 
+    $host="iitjdb.c34ko6kys3lo.us-east-1.rds.amazonaws.com";
+    $port=3306;
+    $socket="";
+    $user="admin";
+    $password="Admin123";
+    $dbname="mydb";
+    $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+    or die ('Could not connect to the database server' . mysqli_connect_error());
 
-            $host="iitjdb.c34ko6kys3lo.us-east-1.rds.amazonaws.com";
-$port=3306;
-$socket="";
-$user="admin";
-$password="Admin123";
-$dbname="mydb";
-
-$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-	or die ('Could not connect to the database server' . mysqli_connect_error());
-
-
-$query = "SELECT EmpID,FirstName,LastName,Title,DOB,Supervisor,Division,GenderCode,MaritalDesc,`Performance Score`,`Current Employee Rating` FROM mydb.employee_data ORDER BY EmpID DESC";
-
-//$query = "SELECT 1";
-$stmt = $con->prepare($query);
-if (!$stmt) {
-    die("Prepare failed: " . $con->error);
-} else {
-    $stmt->execute();
-    $stmt->bind_result($field1name, $field2name,$field3name,$field4name,$field5name,$field6name,$field7name,$field8name,$field9name,$field10name,$field11name);
-    echo "<h3>Employee records</h3>";
-    echo "<table> 
-            <thead>
+    $query = "SELECT EmpID,FirstName,LastName,Title,DOB,Supervisor,Division,GenderCode,MaritalDesc,`Performance Score`,`Current Employee Rating` FROM mydb.employee_data ORDER BY EmpID DESC";
+    $stmt = $con->prepare($query);
+    if (!$stmt) {
+        die("Prepare failed: " . $con->error);
+    } else {
+        $stmt->execute();
+        $stmt->bind_result($field1name, $field2name,$field3name,$field4name,$field5name,$field6name,$field7name,$field8name,$field9name,$field10name,$field11name);
+        echo "<h3>Employee records</h3>";
+        echo "<table> 
+                <thead>
                         <tr>
                             <th>EmpID</th>
                             <th>First Name</th>
@@ -189,42 +200,6 @@ if (!$stmt) {
    }
                 echo '</table>';
             }
-       
-            function training_material() { 
-                $con = mysqli_connect("localhost", "root","","bdm_project"); #Connection string
-                if(mysqli_connect_errno())
-                {
-                    echo "Failed to connect:" . mysqli_connect_errno();
-                }
-                $result = mysqli_query($con,'SELECT DISTINCT(`Training Program Name`),`Training Cost`,`Training Duration(Days)`,`Trainer` FROM `training_and_development_data` GROUP BY `Training Program Name`;');
-                //$result = mysqli_query($con,"SELECT * FROM training_and_development_data");
-                
-                echo "<h3>List of trainings</h3>";
-                echo "<table> 
-                        <thead>
-                                    <tr>
-                                        <th>Training Program Name</th>
-                                        <th>Trainer</th>
-                                        <th>Training Duration (Days)</th>
-                                        <th>Training Cost</th>
-                                    </tr>
-                                </thead>
-                        ";
-                    while ($row = $result->fetch_assoc()) {
-                        $field3name = $row["Training Program Name"];
-                        $field7name = $row["Trainer"]; 
-                        $field8name = $row["Training Duration(Days)"];
-                        $field9name = $row["Training Cost"];        
-                        echo ' <tr>
-                                <td>'.$field3name.'</td> 
-                                <td>'.$field7name.'</td> 
-                                <td>'.$field8name.'</td> 
-                                <td>'.$field9name.'</td>
-                                </tr>
-                            ';
-                    } 
-                    echo '</table>';
-                }
     ?> 
 
 
